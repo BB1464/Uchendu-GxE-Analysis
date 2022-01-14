@@ -12,7 +12,6 @@ M1 <- cor.mtest(dat[,4:9])
 
 M <- cor(dat[,4:9])
 
-
 M2 <- cor.mtest(dat[,4:9],conf.level=.95)
 corrplot(cor(dat[,4:9]),
          method='square',
@@ -35,4 +34,12 @@ corrplot.mixed(corr = M,lower = 'number',
                lower.col = 'black')
 
 
+# Mark the significant values with star based on the significant l --------
 
+
+
+corrplot.mixed(corr = M,lower = 'number',
+               upper = 'ellipse',
+               tl.pos = 'lt',
+               diag = 'u',
+               lower.col = 'black', sig.level = c(0.001, 0.01, 0.05),p.mat=M1$p)

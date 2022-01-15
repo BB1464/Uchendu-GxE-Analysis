@@ -29,6 +29,15 @@ data <- read_excel(here::here('Data/Copy of Sensory Data for Bayesian Analysis.x
 ################################################# 
 
 
+
+# GGE Analysis
+A Genotype plus Genotype by Environment (GGE) analysis is very similar to an AMMI analysis. The difference is in the first step where, instead of genotype and environment, only environment is fitted as a main effect in the model. Therefore, the principal component analysis is performed on the genotype main effect and the interaction jointly. In essence, the GGE analysis fits a principal components model with two components to the two-way genotype by environment table with data centered per environment.
+
+# Objectives
+# GxE Analysis
+# Stability Analysis
+
+
 # Create a TD object for GxE analysis for Mealiness
 
 ```{r}

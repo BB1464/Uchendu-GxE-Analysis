@@ -1,13 +1,4 @@
----
-title: "GxE Analysis"
-author: "Oluwafemi Oyedele"
-date: "1/7/2022"
-output: html_document
----
-
-# Load required library for Single Trial Analysis
-
-```{r}
+## -------------------------------------------------------------------------------
 #intstall.packages('statgenSTA')
 #install.packages('statgenGxE')
 #install.packages('here')
@@ -16,59 +7,38 @@ library(readxl)
 library(statgenGxE)
 library(statgenSTA)
 library(tidyverse)
-```
 
-```{r}
+
+## -------------------------------------------------------------------------------
 data <- read_excel(here::here('Data/Copy of Sensory Data for Bayesian Analysis.xlsx'))
-```
-
-################################################# 
-
-######## Analysis for Mealiness   #######################
-
-################################################# 
 
 
-# Create a TD object for GxE analysis for Mealiness
-
-```{r}
+## -------------------------------------------------------------------------------
 dataTD <- createTD(data=data,genotype = 'Code',trial = 'Env')
-```
 
-## Perform a Finlay-Wilkinson analysis for all Trials
 
-```{r}
+## -------------------------------------------------------------------------------
 Finlay1 <- gxeFw(TD=dataTD,trait='Mealiness')
-```
 
-## Create a scatter plot of Finlay Wilkins Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Finlay1,plotType = 'scatter')
-```
 
-# Mixed Model Analysis for GxE Table of Means
 
-```{r}
+## -------------------------------------------------------------------------------
 Mixed_VarComp <- gxeVarComp(TD = dataTD,trait = 'Mealiness')
 summary(Mixed_VarComp)
-```
 
-# Extract Variance Component
 
-```{r}
+## -------------------------------------------------------------------------------
 vc(Mixed_VarComp)
-```
 
-# Compute Heritabilty
 
-```{r}
+## -------------------------------------------------------------------------------
 herit(Mixed_VarComp)
-```
 
-##### GxGGE analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 # Boxplot showing the distribution of the dataset
 
 plot(dataTD, plotType = "box", traits = "Mealiness",orderBy = "descending")
@@ -78,66 +48,42 @@ GGE_Mealiness <- gxeGGE(TD=dataTD,trait='Mealiness')
 summary(GGE_Mealiness)
 
 # gxeAmmi() for AMMI ANALYSIS
-```
 
-# Visualize the results using a biplot
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(GGE_Mealiness,plotType = 'GGE2',scale = 0.5,sizeGeno = 3)+theme_classic()
 plot(GGE_Mealiness,plotType = 'AMMI1',scale = 0.5,sizeGeno = 3)+theme_classic()+theme_classic()
 plot(GGE_Mealiness,plotType = 'AMMI2',scale = 0.5,sizeGeno = 3)+theme_classic()
-```
 
-## Identifying mega environmenet
 
-```{r}
+## -------------------------------------------------------------------------------
 Mega_Mealiness <- gxeMegaEnv(TD = dataTD,trait = 'Mealiness')
 summary(Mega_Mealiness)
-```
 
-### Let me visualize the Mega_Environment
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Mega_Mealiness)
-```
 
-## Stability Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 Stability_Mealiness <- gxeStability(TD = dataTD,trait = 'Mealiness')
 summary(Stability_Mealiness) # This shows top 10 performing genotype
 #summary(Stability_Mealiness,pctGeno=2) # This shows top 2 performing genotype
-```
 
-# Create plot for different Stability measures
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Stability_Mealiness)
-```
 
-################################################# 
 
-##### Analysis for Fibre
-
-###### 
-
-################################################# 
-
-## Perform a Finlay-Wilkinson analysis for all Trials
-
-```{r}
+## -------------------------------------------------------------------------------
 Finlay2 <- gxeFw(TD=dataTD,trait='Fibre')
-```
 
-## Create a scatter plot of Finlay Wilkins Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Finlay2,plotType = 'scatter')
-```
 
-# Mixed Model Analysis for GxE Table of Means
 
-```{r}
+## -------------------------------------------------------------------------------
 
 # Boxplot showing the distribution of the dataset
 
@@ -146,83 +92,55 @@ plot(dataTD, plotType = "box", traits = "Fibre",orderBy = "descending")
 
 Mixed_VarComp2 <- gxeVarComp(TD = dataTD,trait = 'Fibre')
 summary(Mixed_VarComp2)
-```
 
-# Extract Variance Component
 
-```{r}
+## -------------------------------------------------------------------------------
 vc(Mixed_VarComp2)
-```
 
-# Compute Heritabilty
 
-```{r}
+## -------------------------------------------------------------------------------
 herit(Mixed_VarComp2)
-```
 
-##### GxGGE analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 GGE_Fibre2 <- gxeGGE(TD=dataTD,trait='Fibre')
 summary(GGE_Fibre2)
-```
 
-# Visualize the results using a biplot
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(GGE_Fibre2,plotType = 'GGE2',scale = 0.5,sizeGeno = 3)+theme_classic()
 plot(GGE_Fibre2,plotType = 'AMMI1',scale = 0.5,sizeGeno=3)+theme_classic()
 plot(GGE_Fibre2,plotType = 'AMMI2',scale = 0.5,sizeGeno = 3)+theme_classic()
-```
 
-## Identifying mega environmenet
 
-```{r}
+## -------------------------------------------------------------------------------
 Mega_Fibre2 <- gxeMegaEnv(TD = dataTD,trait = 'Fibre')
 summary(Mega_Fibre2)
-```
 
-### Let me visualize the Mega_Environment
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Mega_Fibre2)
-```
 
-## Stability Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 Stability_Fibre2 <- gxeStability(TD = dataTD,trait = 'Fibre')
 summary(Stability_Fibre2) # This shows top 10 performing genotype
 #summary(Stability_Mealiness,pctGeno=2) # This shows top 2 performing genotype
-```
 
-# Create plot for different Stability measures
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Stability_Fibre2)
-```
 
-##### Analysis for ADH
 
-###### 
-
-################################################# 
-
-## Perform a Finlay-Wilkinson analysis for all Trials
-
-```{r}
+## -------------------------------------------------------------------------------
 Finlay3 <- gxeFw(TD=dataTD,trait='ADH')
-```
 
-## Create a scatter plot of Finlay Wilkins Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Finlay3,plotType = 'scatter')
-```
 
-# Mixed Model Analysis for GxE Table of Means
 
-```{r}
+## -------------------------------------------------------------------------------
 # Boxplot showing the distribution of the dataset
 
 plot(dataTD, plotType = "box", traits = "ADH",orderBy = "descending")
@@ -230,85 +148,55 @@ plot(dataTD, plotType = "box", traits = "ADH",orderBy = "descending")
 
 Mixed_VarComp3 <- gxeVarComp(TD = dataTD,trait = 'ADH')
 summary(Mixed_VarComp3)
-```
 
-# Extract Variance Component
 
-```{r}
+## -------------------------------------------------------------------------------
 vc(Mixed_VarComp3)
-```
 
-# Compute Heritabilty
 
-```{r}
+## -------------------------------------------------------------------------------
 herit(Mixed_VarComp3)
-```
 
-##### GxGGE analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 GGE_ADH3 <- gxeGGE(TD=dataTD,trait='ADH')
 summary(GGE_ADH3)
-```
 
-# Visualize the results using a biplot
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(GGE_ADH3,plotType = 'GGE2',scale = 0.5,sizeGeno = 3)+theme_classic()
 plot(GGE_ADH3,plotType = 'AMMI1',scale = 0.5,sizeGeno=3)+theme_classic()
 plot(GGE_ADH3,plotType = 'AMMI2',scale = 0.5,sizeGeno=3)+theme_classic()
-```
 
-## Identifying mega environmenet
 
-```{r}
+## -------------------------------------------------------------------------------
 Mega_ADH3 <- gxeMegaEnv(TD = dataTD,trait = 'ADH')
 summary(Mega_ADH3)
-```
 
-### Let me visualize the Mega_Environment
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Mega_ADH3)
-```
 
-## Stability Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 Stability_ADH3 <- gxeStability(TD = dataTD,trait = 'ADH')
 summary(Stability_ADH3) # This shows top 10 performing genotype
 #summary(Stability_Mealiness,pctGeno=2) # This shows top 2 performing genotype
-```
 
-# Create plot for different Stability measures
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Stability_ADH3)
-```
 
-################################################# 
 
-##### Analysis for Softness
-
-###### 
-
-################################################# 
-
-## Perform a Finlay-Wilkinson analysis for all Trials
-
-```{r}
+## -------------------------------------------------------------------------------
 Finlay4 <- gxeFw(TD=dataTD,trait='Softness')
-```
 
-## Create a scatter plot of Finlay Wilkins Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Finlay4,plotType = 'scatter')
-```
 
-# Mixed Model Analysis for GxE Table of Means
 
-```{r}
+## -------------------------------------------------------------------------------
 # Boxplot showing the distribution of the dataset
 
 plot(dataTD, plotType = "box", traits = "Softness",orderBy = "descending")
@@ -316,87 +204,57 @@ plot(dataTD, plotType = "box", traits = "Softness",orderBy = "descending")
 
 Mixed_VarComp4 <- gxeVarComp(TD = dataTD,trait = 'Softness')
 summary(Mixed_VarComp4)
-```
 
-# Extract Variance Component
 
-```{r}
+## -------------------------------------------------------------------------------
 vc(Mixed_VarComp4)
-```
 
-# Compute Heritabilty
 
-```{r}
+## -------------------------------------------------------------------------------
 herit(Mixed_VarComp4)
-```
 
-##### GxGGE analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 GGE_Softness4 <- gxeGGE(TD=dataTD,trait='Softness')
 summary(GGE_Softness4)
-```
 
-# Visualize the results using a biplot
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(GGE_Softness4,plotType = 'GGE2',scale = 0.5,sizeGeno = 3)+theme_classic()
 plot(GGE_Softness4,plotType = 'AMMI1',scale = 0.5,sizeGeno=3)+theme_classic()
 plot(GGE_Softness4,plotType = 'AMMI2',scale = 0.5,sizeGeno=3)+theme_classic()
 
 
-```
 
-## Identifying mega environmenet
 
-```{r}
+## -------------------------------------------------------------------------------
 Mega_Softness4 <- gxeMegaEnv(TD = dataTD,trait = 'Softness')
 summary(Mega_Softness4)
-```
 
-### Let me visualize the Mega_Environment
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Mega_Softness4)
-```
 
-## Stability Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 Stability_Softness4 <- gxeStability(TD = dataTD,trait = 'Softness')
 summary(Stability_Softness4) # This shows top 10 performing genotype
 #summary(Stability_Mealiness,pctGeno=2) # This shows top 2 performing genotype
-```
 
-# Create plot for different Stability measures
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Stability_Softness4)
-```
 
-################################################# 
 
-##### Analysis for Taste
-
-###### 
-
-################################################# 
-
-## Perform a Finlay-Wilkinson analysis for all Trials
-
-```{r}
+## -------------------------------------------------------------------------------
 Finlay5 <- gxeFw(TD=dataTD,trait='Taste')
-```
 
-## Create a scatter plot of Finlay Wilkins Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Finlay5,plotType = 'scatter')
-```
 
-# Mixed Model Analysis for GxE Table of Means
 
-```{r}
+## -------------------------------------------------------------------------------
 # Boxplot showing the distribution of the dataset
 
 plot(dataTD, plotType = "box", traits = "Taste",orderBy = "descending")
@@ -404,104 +262,68 @@ plot(dataTD, plotType = "box", traits = "Taste",orderBy = "descending")
 
 Mixed_VarComp5 <- gxeVarComp(TD = dataTD,trait = 'Taste')
 summary(Mixed_VarComp5)
-```
 
-# Extract Variance Component
 
-```{r}
+## -------------------------------------------------------------------------------
 vc(Mixed_VarComp5)
-```
 
-# Compute Heritabilty
 
-```{r}
+## -------------------------------------------------------------------------------
 herit(Mixed_VarComp5)
-```
 
-##### GxGGE analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 GGE_Taste5 <- gxeGGE(TD=dataTD,trait='Taste')
 summary(GGE_Taste5)
-```
 
-# Visualize the results using a biplot
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(GGE_Taste5,plotType = 'GGE2',scale = 0.5,sizeGeno = 3)+theme_classic()
 plot(GGE_Taste5,plotType = 'AMMI1',scale = 0.5,sizeGeno=3)+theme_classic()
 plot(GGE_Taste5,plotType = 'AMMI2',scale = 0.5,sizeGeno=3)+theme_classic()
-```
 
-## Identifying mega environmenet
 
-```{r}
+## -------------------------------------------------------------------------------
 Mega_Taste5 <- gxeMegaEnv(TD = dataTD,trait = 'Taste')
 summary(Mega_Taste5)
-```
 
-### Let me visualize the Mega_Environment
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Mega_Taste5)
-```
 
-## Stability Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 Stability_Taste5 <- gxeStability(TD = dataTD,trait = 'Taste')
 summary(Stability_Taste5) # This shows top 10 performing genotype
 #summary(Stability_Mealiness,pctGeno=2) # This shows top 2 performing genotype
-```
 
-# Create plot for different Stability measures
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Stability_Taste5)
-```
 
-################################################# 
 
-##### Analysis for Colour
-
-###### 
-
-################################################# 
-
-## Perform a Finlay-Wilkinson analysis for all Trials
-
-```{r}
+## -------------------------------------------------------------------------------
 Finlay6 <- gxeFw(TD=dataTD,trait='Colour')
-```
 
-## Create a scatter plot of Finlay Wilkins Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Finlay6,plotType = 'scatter')
-```
 
-# Mixed Model Analysis for GxE Table of Means
 
-```{r}
+## -------------------------------------------------------------------------------
 Mixed_VarComp6 <- gxeVarComp(TD = dataTD,trait = 'Colour')
 summary(Mixed_VarComp6)
-```
 
-# Extract Variance Component
 
-```{r}
+## -------------------------------------------------------------------------------
 vc(Mixed_VarComp6)
-```
 
-# Compute Heritabilty
 
-```{r}
+## -------------------------------------------------------------------------------
 herit(Mixed_VarComp6)
-```
 
-##### GxGGE analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 # Boxplot showing the distribution of the dataset
 
 plot(dataTD, plotType = "box", traits = "Colour",orderBy = "descending")
@@ -509,39 +331,29 @@ plot(dataTD, plotType = "box", traits = "Colour",orderBy = "descending")
 
 GGE_Colour6 <- gxeGGE(TD=dataTD,trait='Colour')
 summary(GGE_Colour6)
-```
 
-# Visualize the results using a biplot
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(GGE_Colour6,plotType = 'GGE2',scale = 0.5,sizeGeno = 3)+theme_classic()
 plot(GGE_Colour6,plotType = 'AMMI1',scale = 0.5,sizeGeno=3)+theme_classic()
 plot(GGE_Colour6,plotType = 'AMMI2',scale = 0.5,sizeGeno=3)+theme_classic()
-```
 
-## Identifying mega environmenet
 
-```{r}
+## -------------------------------------------------------------------------------
 Mega_Colour6 <- gxeMegaEnv(TD = dataTD,trait = 'Colour')
 summary(Mega_Colour6)
-```
 
-### Let me visualize the Mega_Environment
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Mega_Colour6)
-```
 
-## Stability Analysis
 
-```{r}
+## -------------------------------------------------------------------------------
 Stability_Colour6 <- gxeStability(TD = dataTD,trait = 'Colour')
 summary(Stability_Colour6) # This shows top 10 performing genotype
 #summary(Stability_Mealiness,pctGeno=2) # This shows top 2 performing genotype
-```
 
-# Create plot for different Stability measures
 
-```{r}
+## -------------------------------------------------------------------------------
 plot(Stability_Colour6)
-```
+

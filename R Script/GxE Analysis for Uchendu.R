@@ -67,9 +67,21 @@ predict(Mega_Mealiness) # Shows best linear unbiased predictors alongside with t
 plot(Mega_Mealiness)
 
 
-## -------------------------------------------------------------------------------
+## ---------------------------------------------------------------------------
+
+#  Stability measures
+# 
+# Different measures of stability can be calculated using the statgenGxE packag, the cultivar-superiority measure of Lin & Binns (Lin and Binns 1988), Shukla’s stability variance (Shukla 1972) and Wricke’s ecovalence (Wricke 1962). The cultivar-superiority is a function of the sum of the squared differences between a cultivar’s mean and the best cultivar’s mean, where the sum is across trials.. Genotypes with the smallest values of the superiority tend to be more stable, and closer to the best genotype in each environment. Shukla’s stability variance (static stability) is defined as the variance around the genotype’s phenotypic mean across all environments. This provides a measure of the consistency of the genotype, without accounting for performance. Wricke’s Ecovalence Stability Coefficient is the contribution of each genotype to the GxE sum of squares, in an unweighted analysis of the GxE means. A low value indicates that the genotype responds in a consistent manner to changes in environment; i.e. is stable from a dynamic point of view. To compute the stability measures use gxeStability. This will compute all three stability measures described above.
+
+
+
+# Stability Analysis ------------------------------------------------------
+
+
+
 Stability_Mealiness <- gxeStability(TD = dataTD,trait = 'Mealiness')
 summary(Stability_Mealiness) # This shows top 10 performing genotype
+
 #summary(Stability_Mealiness,pctGeno=2) # This shows top 2 performing genotype
 
 

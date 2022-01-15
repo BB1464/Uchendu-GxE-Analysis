@@ -4,9 +4,13 @@ author: "Oluwafemi Oyedele"
 date: "1/7/2022"
 output: html_document
 ---
+###########################################################################
+###############  GxE and Stability Analysis in R   ########################
+###############                                    ########################
+###########################################################################
 
-# Load required library for Single Trial Analysis
 
+# Load required library
 ```{r}
 #intstall.packages('statgenSTA')
 #install.packages('statgenGxE')
@@ -18,13 +22,15 @@ library(statgenSTA)
 library(tidyverse)
 ```
 
+# Import the dataset into R
+
 ```{r}
 data <- read_excel(here::here('Data/Copy of Sensory Data for Bayesian Analysis.xlsx'))
 ```
 
 ################################################# 
 
-######## Analysis for Mealiness   #######################
+######## Analysis for Mealiness   ################
 
 ################################################# 
 

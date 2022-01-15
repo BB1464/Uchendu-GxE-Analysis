@@ -60,6 +60,8 @@ plot(GGE_Mealiness,plotType = 'AMMI2',scale = 0.5,sizeGeno = 3)+theme_classic()
 Mega_Mealiness <- gxeMegaEnv(TD = dataTD,trait = 'Mealiness')
 summary(Mega_Mealiness)
 
+predict(Mega_Mealiness) # Shows best linear unbiased predictors alongside with their standard errors
+
 
 ## -------------------------------------------------------------------------------
 plot(Mega_Mealiness)
@@ -231,6 +233,7 @@ plot(GGE_Softness4,plotType = 'AMMI2',scale = 0.5,sizeGeno=3)+theme_classic()
 Mega_Softness4 <- gxeMegaEnv(TD = dataTD,trait = 'Softness')
 summary(Mega_Softness4)
 
+predict(Softness) # Shows best linear unbiased predictors alongside with their standard errors
 
 ## -------------------------------------------------------------------------------
 plot(Mega_Softness4)
@@ -287,6 +290,7 @@ plot(GGE_Taste5,plotType = 'AMMI2',scale = 0.5,sizeGeno=3)+theme_classic()
 Mega_Taste5 <- gxeMegaEnv(TD = dataTD,trait = 'Taste')
 summary(Mega_Taste5)
 
+predict(Taste) # Shows best linear unbiased predictors alongside with their standard errors
 
 ## -------------------------------------------------------------------------------
 plot(Mega_Taste5)
@@ -343,8 +347,9 @@ plot(GGE_Colour6,plotType = 'AMMI2',scale = 0.5,sizeGeno=3)+theme_classic()
 Mega_Colour6 <- gxeMegaEnv(TD = dataTD,trait = 'Colour')
 summary(Mega_Colour6)
 
+predict(Colour) # Shows best linear unbiased predictors alongside with their standard errors
 
-## -------------------------------------------------------------------------------
+## -------------------------------------------------------------------------
 plot(Mega_Colour6)
 
 
@@ -354,6 +359,6 @@ summary(Stability_Colour6) # This shows top 10 performing genotype
 #summary(Stability_Mealiness,pctGeno=2) # This shows top 2 performing genotype
 
 
-## -------------------------------------------------------------------------------
+## ------------------------------------------------------------------------
 plot(Stability_Colour6)
 

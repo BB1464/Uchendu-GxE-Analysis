@@ -102,6 +102,8 @@ plot(GGE_Mealiness,plotType = 'AMMI2',scale = 0.5,sizeGeno = 3)+theme_classic()
 ```{r}
 Mega_Mealiness <- gxeMegaEnv(TD = dataTD,trait = 'Mealiness')
 summary(Mega_Mealiness)
+
+predict(Mega_Mealiness) # Shows best linear unbiased predictors alongside with their standard errors
 ```
 
 ### Let me visualize the Mega_Environment

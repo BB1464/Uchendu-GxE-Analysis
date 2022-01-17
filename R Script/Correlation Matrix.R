@@ -43,12 +43,29 @@ corrplot.mixed(corr = M,lower = 'number',
 
 # Mark the significant values with star based on the significant l --------
 
-
-
 corrplot.mixed(corr = M,lower = 'number',
                upper = 'ellipse',
                tl.pos = 'lt',
                diag = 'u',
                lower.col = 'black', 
                sig.level = c(0.001, 0.01, 0.05)
-               ,p.mat=M1$p,pch.cex=0.6)
+               ,p.mat=M1$p,pch.cex=0.9,pch.col='gray20')
+
+
+
+# New line based on github reply 
+
+corrplot.mixed(corr = M,lower = 'number',
+               upper = 'ellipse',
+               tl.pos = 'lt',
+               diag = 'u',
+               lower.col = 'black', 
+               sig.level = c(0.001, 0.01,0.05)
+               ,insig = 'label_sig',p.mat=M1$p,pch.cex=0.9,pch.col='gray20')
+
+
+
+
+
+
+

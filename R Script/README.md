@@ -1,1 +1,0 @@
-# This repository contains files and dataset I used in teaching GxE Analysis in R using the statgenGxE Package in R.
